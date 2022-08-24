@@ -87,6 +87,11 @@ public class Promedios extends javax.swing.JFrame {
 
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -98,19 +103,36 @@ public class Promedios extends javax.swing.JFrame {
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         double numero1, numero2, numero3, promedio;
+        if (txtnumero1.getText().length()!=0 && txtnumero2.getText().length()!=0 && txtnumero3.getText().length()!=0){
         numero1 = Double.parseDouble(txtnumero1.getText());
         numero2 = Double.parseDouble(txtnumero2.getText());
         numero3 = Double.parseDouble(txtnumero3.getText());
         
         DecimalFormat df = new DecimalFormat("0.00");
         
-        if((0>numero1)||(numero1>20) || (0>numero2)||(numero2>20) || (0>numero3)||(numero3>20) ){
-            JOptionPane.showMessageDialog(null,"Ingrese números en el rango del 1 al 20");           
+        if((0>numero1)||(numero1>20) || (0>numero2)||(numero2>20) || (0>numero3)||(numero3>20)){
+            JOptionPane.showMessageDialog(null,"Ingrese números en el rango del 1 al 20");  
+              txtnumero1.setText("");
+              txtnumero2.setText("");
+              txtnumero3.setText("");
         }else{
             promedio = (numero1 + numero2+ numero3)/3;
             txtPromedio.setText(String.valueOf(df.format(promedio)));
         }
+        }else{
+              txtnumero1.setText("");
+              txtnumero2.setText("");
+              txtnumero3.setText("");
+              JOptionPane.showMessageDialog(null, "Ingrese notas");
+        }
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtnumero1.setText("");
+        txtnumero2.setText("");
+        txtnumero3.setText("");
+        txtPromedio.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
